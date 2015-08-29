@@ -5,10 +5,12 @@
 brew
 ====
 
-Plugin for [Oh My Fish](https://www.github.com/fish-shell/oh-my-fish) to autocomplete commands of [Homebrew](http://brew.sh).
+[Oh My Fish](https://www.github.com/fish-shell/oh-my-fish) plugin to integrate [Homebrew](http://brew.sh) paths into shell.
 
 Install
 -------
+
+> *Note*: You need to have `brew` installed.
 
 ```fish
 $ omf install brew

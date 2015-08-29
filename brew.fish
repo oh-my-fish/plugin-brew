@@ -3,6 +3,11 @@
 #
 
 function init -a path --on-event init_brew
+
+  if not available brew
+    echo "Please install 'brew' first!"; return 1
+  end
+
   set -l brew_paths /usr/local/bin /usr/bin /bin /usr/local/sbin /usr/sbin /sbin
 
   # Append all existing brew paths to PATH
