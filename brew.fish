@@ -1,9 +1,4 @@
-# SYNOPSIS
-#   brew autocompletion
-#
-
 function init -a path --on-event init_brew
-
   if not available brew
     echo "Please install 'brew' first!"; return 1
   end
