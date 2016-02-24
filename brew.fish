@@ -1,5 +1,5 @@
 function init -a path --on-event init_brew
-  if not available brew
+  if not type -q brew
     echo "Please install 'brew' first!"; return 1
   end
 
