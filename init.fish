@@ -1,24 +1,15 @@
-if type -q brew
-  set -l brew_paths /usr/local/bin /usr/bin /bin /usr/local/sbin /usr/sbin /sbin
+# check and set $HOMEBREW_BIN
+if not set -q HOMEBREW_BIN
+  set HOMEBREW_BIN /usr/local/bin/brew
+end
 
-  # Append all existing brew paths to PATH
-  set -l existing_brew_paths
-  for brew_path in $brew_paths
-    if test -d $brew_path
-      set PATH $PATH $brew_path
-      set existing_brew_paths $existing_brew_paths $brew_path
-    end
-  end
-
-  # Remove brew paths from tail to head that were not recently added
-  set -l number_of_paths_to_ignore (math (count $PATH) - (count $existing_brew_paths))
-  for i in (seq (count $PATH))[-1..1]
-    if test $i -le $number_of_paths_to_ignore
-      if contains $PATH[$i] $brew_paths
-        set -e PATH[$i]
-      end
-    end
-  end
+# export $HOMEBREW_BIN and initialized brew shell environment if $HOMEBREW_BIN is valid
+if type -q $HOMEBREW_BIN; and $HOMEBREW_BIN shellenv > /dev/null 2>&1
+  set -gx HOMEBREW_BIN $HOMEBREW_BIN
+  eval ($HOMEBREW_BIN shellenv)
 else
-  echo "Please install 'brew' first!"
+  echo "Error! 'brew' not found at $HOMEBREW_BIN.
+Please make sure Homebrew is installed and \$HOMEBREW_BIN is correctly set!
+To install Homebrew, please check https://brew.sh
+Note that setting \$HOMEBREW_BIN is optional if the default Homebrew installation path is used."
 end
