@@ -3,10 +3,12 @@ if not set -q HOMEBREW_BIN
   set HOMEBREW_BIN /usr/local/bin/brew
 end
 
-# export $HOMEBREW_BIN and initialized brew shell environment if $HOMEBREW_BIN is valid
+# initialized brew shell environment if $HOMEBREW_BIN is valid
 if type -q $HOMEBREW_BIN; and $HOMEBREW_BIN shellenv > /dev/null 2>&1
-  # the default behavior is overriden, since setting a global $fish_user_paths 
-  # will shadow the universal $fish_user_paths, which is not how it's designed to work
+  # By default, `brew shellenv` sets $fish_user_paths as a global variable instead of directly
+  # setting $PATH. This behavior should be avoided and thus is overriden here, since setting 
+  # a global $fish_user_paths will shadow the universal $fish_user_paths, which is supposed 
+  # to be set manually by the user by design.
   eval ($HOMEBREW_BIN shellenv | sed 's/fish_user_paths/PATH/g')
   set -gx HOMEBREW_BIN $HOMEBREW_BIN
   set -gx PATH $PATH
