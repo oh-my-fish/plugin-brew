@@ -5,8 +5,11 @@ end
 
 # export $HOMEBREW_BIN and initialized brew shell environment if $HOMEBREW_BIN is valid
 if type -q $HOMEBREW_BIN; and $HOMEBREW_BIN shellenv > /dev/null 2>&1
+  # the default behavior is overriden, since setting a global $fish_user_paths 
+  # will shadow the universal $fish_user_paths, which is not it's designed to work
+  eval ($HOMEBREW_BIN shellenv | sed 's/fish_user_paths/PATH/g')
   set -gx HOMEBREW_BIN $HOMEBREW_BIN
-  eval ($HOMEBREW_BIN shellenv)
+  set -gx PATH $PATH
 else
   echo "Error! 'brew' not found at $HOMEBREW_BIN.
 Please make sure Homebrew is installed and \$HOMEBREW_BIN is correctly set!
