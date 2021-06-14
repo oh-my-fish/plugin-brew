@@ -1,5 +1,5 @@
 if type -q brew
-  set -l brew_paths /usr/local/bin /usr/bin /bin /usr/local/sbin /usr/sbin /sbin
+  set -l brew_paths /opt/homebrew/bin /usr/local/bin /usr/bin /bin /opt/homebrew/sbin /usr/local/sbin /usr/sbin /sbin
 
   # Append all existing brew paths to PATH
   set -l existing_brew_paths
