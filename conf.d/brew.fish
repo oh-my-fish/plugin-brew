@@ -6,12 +6,11 @@ for brew_path in $brew_paths
   end
 
   if test -f $brew_path/brew
-    set brew_found true
     set PATH $brew_path $PATH
     break
   end
 end
 
-if not set -q brew_found
+if not type -q brew
   echo "Please install 'brew' first!"
 end
