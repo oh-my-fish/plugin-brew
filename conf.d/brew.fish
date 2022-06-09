@@ -1,4 +1,4 @@
-set -l brew_paths /opt/homebrew/bin /usr/local/bin /usr/bin /bin /opt/homebrew/sbin /usr/local/sbin /usr/sbin /sbin
+set -l brew_paths /opt/homebrew/bin /home/linuxbrew/.linuxbrew/bin/ /usr/local/bin /usr/bin /bin /opt/homebrew/sbin /usr/local/sbin /usr/sbin /sbin
 
 for brew_path in $brew_paths
   if contains $brew_path $PATH
